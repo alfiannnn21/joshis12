@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Temukan contoh makanan surplus dengan harga bersahabat di SANTAP+.">
+    <title>joshis12 | SANTAP+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .static-notice {
+            padding: 9px 16px;
+            background: var(--wine-950);
+            color: rgba(255,255,255,.86);
+            text-align: center;
+            font-size: 12px;
+        }
+        .static-notice strong { color: #fff; }
+        .catalog-empty {
+            display: none;
+            padding: 24px;
+            border: 1px dashed var(--line);
+            border-radius: var(--r-sm);
+            color: var(--muted);
+            text-align: center;
+        }
+        .food-card[hidden] { display: none !important; }
+        .hero-menu-copy { display: grid; gap: 3px; }
+        .hero-card .food-preview { text-decoration: none; }
+        .hero-menu-copy small {
+            color: var(--wine-700);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .hero-menu-copy strong { color: var(--wine-950); font: 800 17px var(--font-display); }
+        .hero-menu-copy span { color: var(--muted); font-size: 13px; }
+        @media (max-width: 560px) { .static-notice { font-size: 11px; } }
+    </style>
+</head>
+<body id="top">
+    <div class="static-notice" role="note">
+        <strong>Versi GitHub Pages:</strong> katalog di bawah berisi contoh menu; daftar, login, dan reservasi belum tersedia.
+    </div>
+
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="#top" class="brand" aria-label="SANTAP+, beranda">
+                <img src="assets/brand-logo.jpg" alt="" class="brand-img">
+                <span>SANTAP<span class="brand-plus">+</span></span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-controls="mainNav" aria-expanded="false">
+                <i class="bi bi-list"></i>
+            </button>
+            <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
+                <a href="#makanan">Cari makanan</a>
+                <a href="#cara-kerja">Cara kerja</a>
+                <a href="#restoran">Untuk restoran</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="eyebrow"><i class="bi bi-leaf"></i> Makanan lebih bermakna</div>
+                    <h1>Makanan enak,<br><span>harga lebih bersahabat.</span></h1>
+                    <p>Temukan makanan surplus dari restoran sekitar. Lihat pilihan, cek waktu pengambilan, lalu pilih yang cocok buatmu.</p>
+                    <div class="hero-actions">
+                        <a href="#makanan" class="btn btn-primary"><i class="bi bi-search"></i> Lihat contoh menu</a>
+                        <a href="#cara-kerja" class="btn btn-outline">Cara kerja</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div><strong>3</strong><span>contoh menu</span></div>
+                        <div><strong>3</strong><span>kategori</span></div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="hero-card-top">
+                            <span class="live-badge"><i class="bi bi-circle-fill"></i> Contoh pilihan</span>
+                            <span>Menu ilustrasi</span>
+                        </div>
+                        <a class="food-preview" href="#makanan" aria-label="Lihat contoh nasi ayam bakar">
+                            <img class="food-preview-img" src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=700&auto=format&fit=crop&q=80" alt="Nasi ayam dengan sayuran">
+                            <span class="hero-menu-copy">
+                                <small>Menu rumahan</small>
+                                <strong>Nasi ayam bakar</strong>
+                                <span>Warung Makan Bu Nita</span>
+                            </span>
+                            <span class="hero-food-arrow" aria-hidden="true"><i class="bi bi-arrow-up-right"></i></span>
+                        </a>
+                        <div class="preview-info">
+                            <div><span>Harga contoh</span><strong>Rp 18.000</strong></div>
+                            <div><span>Pickup contoh</span><strong>19:30 WIB</strong></div>
+                        </div>
+                        <a class="hero-card-link" href="#makanan">Jelajahi katalog <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container value-strip" aria-label="Informasi layanan">
+            <div class="value-item"><i class="bi bi-tag"></i><div><strong>Harga jelas</strong><span>Periksa harga sebelum memilih</span></div></div>
+            <div class="value-item"><i class="bi bi-clock"></i><div><strong>Waktu pickup</strong><span>Rencanakan pengambilanmu</span></div></div>
+            <div class="value-item"><i class="bi bi-shop"></i><div><strong>Dari restoran sekitar</strong><span>Ambil langsung dari mitra</span></div></div>
+        </div>
+
+        <section class="food-section" id="makanan">
+            <div class="container">
+                <div class="section-heading">
+                    <div><span class="section-label">KATALOG CONTOH</span><h2>Ada yang menarik buatmu?</h2></div>
+                    <p>Gunakan pencarian dan kategori untuk melihat cara kerja katalog.</p>
+                </div>
+                <div class="search-box" role="search">
+                    <div class="search-input"><i class="bi bi-search" aria-hidden="true"></i><input id="catalogSearch" type="search" aria-label="Cari menu atau restoran" placeholder="Cari nama makanan atau restoran"></div>
+                    <button class="search-button" id="catalogSearchButton" type="button">Cari menu</button>
+                </div>
+                <p class="catalog-result-count" id="filteredCount">3 makanan surplus tersedia</p>
+                <div class="filter-row" aria-label="Filter kategori">
+                    <button class="filter-chip pill-btn active" type="button" data-cat="all" aria-pressed="true">Semua</button>
+                    <button class="filter-chip pill-btn" type="button" data-cat="makanan berat" aria-pressed="false">Makanan berat</button>
+                    <button class="filter-chip pill-btn" type="button" data-cat="minuman" aria-pressed="false">Minuman</button>
+                    <button class="filter-chip pill-btn" type="button" data-cat="roti & kue" aria-pressed="false">Roti &amp; kue</button>
+                </div>
+                <div class="food-grid">
+                    <article class="food-card" data-name="Nasi ayam bakar" data-restaurant="Warung Makan Bu Nita" data-category="makanan berat" data-city="Jakarta Selatan" data-price="18000" data-stock="4">
+                        <div class="food-image"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=900&auto=format&fit=crop&q=80" alt="Nasi ayam bakar"></div>
+                        <div class="food-body">
+                            <div class="food-category">Makanan berat</div>
+                            <h3>Nasi ayam bakar</h3>
+                            <p class="restaurant-name"><i class="bi bi-shop"></i> Warung Makan Bu Nita</p>
+                            <p class="food-location"><i class="bi bi-geo-alt"></i> Tebet, Jakarta Selatan</p>
+                            <div class="food-meta"><div><span>Harga contoh</span><strong>Rp 18.000</strong></div><div><span>Stok contoh</span><strong>4 porsi</strong></div></div>
+                            <div class="pickup-info"><i class="bi bi-clock"></i> Pickup contoh sampai 19:30</div>
+                        </div>
+                    </article>
+                    <article class="food-card" data-name="Kopi susu gula aren" data-restaurant="Kopi Sudut" data-category="minuman" data-city="Jakarta Selatan" data-price="0" data-stock="2">
+                        <div class="food-image"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&auto=format&fit=crop&q=80" alt="Kopi susu"></div>
+                        <div class="food-body">
+                            <div class="food-category">Minuman</div>
+                            <h3>Kopi susu gula aren</h3>
+                            <p class="restaurant-name"><i class="bi bi-shop"></i> Kopi Sudut</p>
+                            <p class="food-location"><i class="bi bi-geo-alt"></i> Pancoran, Jakarta Selatan</p>
+                            <div class="food-meta"><div><span>Harga contoh</span><strong class="price-free">Gratis</strong></div><div><span>Stok contoh</span><strong>2 gelas</strong></div></div>
+                            <div class="pickup-info"><i class="bi bi-clock"></i> Pickup contoh sampai 18:45</div>
+                        </div>
+                    </article>
+                    <article class="food-card" data-name="Paket roti sore" data-restaurant="Roti Pagi" data-category="roti & kue" data-city="Jakarta Selatan" data-price="12000" data-stock="3">
+                        <div class="food-image"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&auto=format&fit=crop&q=80" alt="Roti dan pastry"></div>
+                        <div class="food-body">
+                            <div class="food-category">Roti &amp; kue</div>
+                            <h3>Paket roti sore</h3>
+                            <p class="restaurant-name"><i class="bi bi-shop"></i> Roti Pagi</p>
+                            <p class="food-location"><i class="bi bi-geo-alt"></i> Kuningan, Jakarta Selatan</p>
+                            <div class="food-meta"><div><span>Harga contoh</span><strong>Rp 12.000</strong></div><div><span>Stok contoh</span><strong>3 paket</strong></div></div>
+                            <div class="pickup-info"><i class="bi bi-clock"></i> Pickup contoh sampai 20:00</div>
+                        </div>
+                    </article>
+                </div>
+                <p class="catalog-empty" id="catalogEmpty">Belum ada menu yang cocok. Coba kata kunci atau kategori lain.</p>
+            </div>
+        </section>
+
+        <section class="how-section" id="cara-kerja">
+            <div class="container">
+                <div class="section-heading centered">
+                    <div><span class="section-label">CARA KERJA</span><h2>Empat langkah sederhana</h2></div>
+                    <p>Alur ini menjelaskan pengalaman yang tersedia pada aplikasi lengkap.</p>
+                </div>
+                <div class="steps">
+                    <div class="step-card"><div class="step-number">01</div><i class="bi bi-search step-icon"></i><h3>Pilih menu</h3><p>Cari makanan yang tersedia di sekitar lokasi.</p></div>
+                    <div class="step-card"><div class="step-number">02</div><i class="bi bi-card-checklist step-icon"></i><h3>Cek detailnya</h3><p>Lihat harga, jumlah porsi, dan waktu pickup.</p></div>
+                    <div class="step-card"><div class="step-number">03</div><i class="bi bi-ticket-perforated step-icon"></i><h3>Buat reservasi</h3><p>Simpan detail pesanan dan kode pickup-mu.</p></div>
+                    <div class="step-card"><div class="step-number">04</div><i class="bi bi-bag-check step-icon"></i><h3>Ambil pesanan</h3><p>Datang sesuai jadwal dan tunjukkan kode pickup.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="restaurant-cta" id="restoran">
+            <div class="container">
+                <div class="cta-box">
+                    <div>
+                        <span class="section-label">UNTUK RESTORAN</span>
+                        <h2>Masih ada makanan tersisa di akhir hari?</h2>
+                        <p>Tawarkan menu yang masih layak dinikmati dan bantu lebih banyak orang mendapatkan makanan dengan harga yang sesuai.</p>
+                    </div>
+                    <a href="#cara-kerja" class="btn btn-light">Pelajari cara kerja <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <a href="#top" class="brand footer-brand"><span class="brand-mark">S+</span><span>SANTAP<span class="brand-plus">+</span></span></a>
+                <p>Temukan makanan surplus dari restoran sekitar dan ambil langsung sesuai jadwal.</p>
+            </div>
+            <div><h4>Jelajahi</h4><a href="#makanan">Katalog makanan</a><a href="#cara-kerja">Cara kerja</a></div>
+            <div><h4>Tentang versi ini</h4><span>Situs statis untuk GitHub Pages</span><span>Data katalog hanya contoh</span></div>
+        </div>
+        <div class="footer-bottom"><div class="container">© SANTAP+ · Makanan baik, tidak perlu terbuang.</div></div>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+</body>
+</html>
