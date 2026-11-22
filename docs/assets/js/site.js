@@ -116,6 +116,10 @@
   function renderActivity() {
     var orders = readDemoData(storageKeys.orders);
     var listings = readDemoData(storageKeys.listings);
+    var homeOrderCount = document.getElementById("homeOrderCount");
+    var homeListingCount = document.getElementById("homeListingCount");
+    if (homeOrderCount) homeOrderCount.textContent = String(orders.length);
+    if (homeListingCount) homeListingCount.textContent = String(listings.length);
 
     if (orderList) {
       orderList.innerHTML = orders.length ? "" : '<p class="empty-activity">Belum ada pesanan.</p>';
