@@ -248,6 +248,8 @@ h2 { color: var(--wine-dark); font: 600 clamp(32px,4.6vw,48px)/1.15 var(--serif)
 .login-return:hover, .login-signup a:hover, .forgot-link:hover { text-decoration: underline; }
 .login-copyright { margin: 37px 0 0; color: #9b8f83; font-size: 9px; }
 
+.login-tabs{display:grid;grid-template-columns:1fr 1fr;margin-bottom:16px}.login-tabs button{height:39px;border:1px solid #ded5cb;background:transparent;color:#7d7065;font-size:11px;cursor:pointer}.login-tabs button.active{border-color:var(--wine-deep);background:var(--wine-deep);color:#fff}.login-register-fields{display:grid;gap:7px}.login-register-fields[hidden]{display:none}.login-register-fields select{margin-bottom:4px}.login-register-fields+.form-label{margin-top:14px}.login-success{border:1px solid #bacbaa;background:#edf4e7;color:#4f663d}.login-error{border:1px solid #dfb3ad;background:#f8eae7;color:#843e35}
+
 /* Functional demo commerce surfaces */
 .buy-button {
   width: 100%;

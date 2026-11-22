@@ -33,13 +33,30 @@
         <h2>Senang melihatmu <em>lagi.</em></h2>
         <p class="login-intro">Masukkan detail akunmu untuk melanjutkan.</p>
         <div class="demo-alert" role="note"><span>i</span><p><strong>Pratinjau GitHub Pages</strong><br>Form ini belum terhubung ke sistem akun. Jangan masukkan kata sandi asli.</p></div>
-        <form id="loginForm">
+        <div class="auth-tabs login-tabs" role="tablist" aria-label="Aksi akun">
+          <button class="active" type="button" data-auth-mode="login" role="tab" aria-selected="true">Masuk</button>
+          <button type="button" data-auth-mode="register" role="tab" aria-selected="false">Daftar</button>
+        </div>
+        <form id="loginForm" novalidate>
+          <div class="register-fields login-register-fields" hidden>
+            <label class="form-label" for="registerName">Nama lengkap</label>
+            <input class="form-input" id="registerName" name="name" type="text" autocomplete="name" placeholder="Nama Anda">
+            <label class="form-label" for="registerRole">Saya bergabung sebagai</label>
+            <select class="form-input" id="registerRole" name="role">
+              <option value="pembeli">Pembeli makanan</option>
+              <option value="penjual">Penjual / mitra</option>
+            </select>
+          </div>
           <label class="form-label" for="email">Alamat email</label>
           <input class="form-input" id="email" name="email" type="email" autocomplete="email" placeholder="nama@email.com" required>
           <div class="password-label"><label class="form-label" for="password">Kata sandi</label><a class="forgot-link" href="#demoNotice">Lupa kata sandi?</a></div>
           <div class="password-field">
             <input class="form-input" id="password" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
             <button id="togglePassword" type="button" aria-label="Tampilkan kata sandi" aria-pressed="false">Lihat</button>
+          </div>
+          <div class="register-fields login-register-fields" hidden>
+            <label class="form-label" for="passwordConfirm">Ulangi kata sandi</label>
+            <input class="form-input" id="passwordConfirm" name="passwordConfirm" type="password" autocomplete="new-password" placeholder="Ketik ulang kata sandi">
           </div>
           <label class="remember-row"><input type="checkbox" name="remember"><span>Ingat saya di perangkat ini</span></label>
           <button class="button button-dark login-submit" type="submit">Masuk ke Joshis12 <span aria-hidden="true">→</span></button>
