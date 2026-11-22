@@ -13,11 +13,11 @@ CREATE TABLE IF NOT EXISTS joshis12_preview_variants (
 INSERT INTO joshis12_preview_variants
   (slug, display_name, theme, preview_url, file_path)
 VALUES
-  ('kafe-minimal', 'Kafe Minimal', 'Warm editorial minimal', '/kafe-minimal/', 'docs/kafe-minimal/index.html'),
-  ('botanic-fresh', 'Botanic Fresh', 'Organic botanical green', '/botanic-fresh/', 'docs/botanic-fresh/index.html'),
-  ('retro-pop', 'Retro Pop', 'Yellow and orange retro poster', '/retro-pop/', 'docs/retro-pop/index.html'),
-  ('porto-mono', 'Porto Mono', 'Monochrome monographic', '/porto-mono/', 'docs/porto-mono/index.html'),
-  ('evening-wine', 'Evening Wine', 'Dark burgundy evening', '/evening-wine/', 'docs/evening-wine/index.html')
+  ('kafe-minimal', 'Kafe Minimal', 'Warm editorial minimal', 'https://alfiannnn21.github.io/joshis12/kafe-minimal/', 'docs/kafe-minimal/index.html'),
+  ('botanic-fresh', 'Botanic Fresh', 'Organic botanical green', 'https://alfiannnn21.github.io/joshis12/botanic-fresh/', 'docs/botanic-fresh/index.html'),
+  ('retro-pop', 'Retro Pop', 'Yellow and orange retro poster', 'https://alfiannnn21.github.io/joshis12/retro-pop/', 'docs/retro-pop/index.html'),
+  ('porto-mono', 'Porto Mono', 'Monochrome monographic', 'https://alfiannnn21.github.io/joshis12/porto-mono/', 'docs/porto-mono/index.html'),
+  ('evening-wine', 'Evening Wine', 'Dark burgundy evening', 'https://alfiannnn21.github.io/joshis12/evening-wine/', 'docs/evening-wine/index.html')
 ON DUPLICATE KEY UPDATE
   display_name = VALUES(display_name),
   theme = VALUES(theme),
