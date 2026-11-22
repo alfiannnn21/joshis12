@@ -289,6 +289,7 @@
   var demoNotice = document.getElementById("demoNotice");
   var password = document.getElementById("password");
   var togglePassword = document.getElementById("togglePassword");
+  var authMode = "login";
 
   function showDemoNotice(message) {
     if (!demoNotice) return;
@@ -296,11 +297,105 @@
     demoNotice.hidden = false;
   }
 
+  function showAuthNotice(message, success) {
+    showDemoNotice(message);
+    demoNotice.classList.toggle("login-success", !!success);
+    demoNotice.classList.toggle("login-error", !success);
+  }
+
+  function hashDemoPassword(value) {
+    if (window.crypto && window.crypto.subtle) {
+      return window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(value)).then(function (buffer) {
+        return Array.from(new Uint8Array(buffer)).map(function (byte) {
+          return byte.toString(16).padStart(2, "0");
+        }).join("");
+      });
+    }
+    return Promise.resolve("plain:" + value);
+  }
+
+  var authTabs = document.querySelectorAll("[data-auth-mode]");
+  authTabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      authMode = tab.dataset.authMode;
+      authTabs.forEach(function (item) {
+        var active = item === tab;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      var registering = authMode === "register";
+      document.querySelectorAll(".login-register-fields").forEach(function (field) {
+        field.hidden = !registering;
+      });
+      document.getElementById("registerName").required = registering;
+      document.getElementById("passwordConfirm").required = registering;
+      document.querySelector(".login-submit").innerHTML = registering ?
+        'Buat akun demo <span aria-hidden="true">→</span>' :
+        'Masuk ke Joshis12 <span aria-hidden="true">→</span>';
+      document.querySelector(".login-card h2").innerHTML = registering ?
+        'Mulai perjalanan <em>baikmu.</em>' :
+        'Senang melihatmu <em>lagi.</em>';
+      demoNotice.hidden = true;
+    });
+  });
+
   if (loginForm) {
     loginForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      if (!loginForm.reportValidity()) return;
-      showDemoNotice("Form pratinjau berhasil dicoba, tetapi belum ada autentikasi di GitHub Pages. Silakan gunakan aplikasi Joshis12 yang terhubung ke backend.");
+      var email = document.getElementById("email").value.trim().toLowerCase();
+      var passwordValue = document.getElementById("password").value;
+      if (!email || passwordValue.length < 6) {
+        showAuthNotice("Lengkapi email dan kata sandi minimal 6 karakter.", false);
+        return;
+      }
+
+      if (authMode === "register") {
+        var name = document.getElementById("registerName").value.trim();
+        var confirm = document.getElementById("passwordConfirm").value;
+        var role = document.getElementById("registerRole").value;
+        if (!name) {
+          showAuthNotice("Masukkan nama lengkap untuk mendaftar.", false);
+          return;
+        }
+        if (passwordValue !== confirm) {
+          showAuthNotice("Kata sandi dan pengulangannya belum sama.", false);
+          return;
+        }
+        hashDemoPassword(passwordValue).then(function (passwordHash) {
+          var account = { name: name, email: email, role: role, passwordHash: passwordHash };
+          try {
+            localStorage.setItem("joshis12-demo-account", JSON.stringify(account));
+            sessionStorage.setItem("joshis12-demo-session", JSON.stringify({ name: name, email: email, role: role }));
+          } catch (error) {
+            showAuthNotice("Browser tidak mengizinkan penyimpanan akun demo.", false);
+            return;
+          }
+          showAuthNotice("Pendaftaran demo berhasil. Akun " + name + " tersimpan di browser ini.", true);
+          loginForm.reset();
+        });
+        return;
+      }
+
+      var stored = null;
+      try {
+        stored = JSON.parse(localStorage.getItem("joshis12-demo-account") || "null");
+      } catch (error) {
+        stored = null;
+      }
+      hashDemoPassword(passwordValue).then(function (passwordHash) {
+        if (!stored || stored.email !== email || stored.passwordHash !== passwordHash) {
+          showAuthNotice("Email atau kata sandi tidak cocok dengan akun demo yang tersimpan.", false);
+          return;
+        }
+        try {
+          sessionStorage.setItem("joshis12-demo-session", JSON.stringify({
+            name: stored.name,
+            email: stored.email,
+            role: stored.role
+          }));
+        } catch (error) {}
+        showAuthNotice("Masuk berhasil. Selamat datang, " + stored.name + ".", true);
+      });
     });
   }
 
@@ -308,8 +403,9 @@
   if (signupLink) {
     signupLink.addEventListener("click", function (event) {
       event.preventDefault();
-      showDemoNotice("Pendaftaran akun belum tersedia di situs pratinjau ini. Gunakan aplikasi Joshis12 untuk membuat akun.");
-      demoNotice.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      var registerTab = document.querySelector('[data-auth-mode="register"]');
+      if (registerTab) registerTab.click();
+      document.querySelector(".login-card").scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
