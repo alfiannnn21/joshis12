@@ -218,6 +218,55 @@ h2 { color: var(--wine-dark); font: 600 clamp(32px,4.6vw,48px)/1.15 var(--serif)
 .login-return:hover, .login-signup a:hover, .forgot-link:hover { text-decoration: underline; }
 .login-copyright { margin: 37px 0 0; color: #9b8f83; font-size: 9px; }
 
+/* Functional demo commerce surfaces */
+.buy-button {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 12px;
+  border: 1px solid var(--wine-deep);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--wine-deep);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .16s ease, color .16s ease, transform .16s ease;
+}
+.buy-button:hover { background: var(--wine-deep); color: #fff; transform: translateY(-1px); }
+.sell-section { padding: 82px 0; border-top: 1px solid var(--line); background: #efe7da; }
+.sell-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(35px,8vw,100px); align-items: start; }
+.sell-copy h2 { max-width: 420px; }
+.sell-copy > p:last-child { max-width: 390px; color: #77695e; font-size: 12px; }
+.sell-form { display: grid; gap: 13px; padding: 26px; border: 1px solid #d8cdbc; background: #faf7f0; }
+.sell-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.sell-form label, .checkout-form label { display: grid; gap: 6px; color: #574940; font-size: 10px; font-weight: 700; }
+.sell-form input, .checkout-form input { width: 100%; height: 43px; padding: 0 12px; border: 1px solid #d8cdbc; border-radius: 2px; background: #fff; color: var(--ink); font-size: 12px; }
+.sell-form .button { width: max-content; margin-top: 4px; cursor: pointer; }
+.sell-message { min-height: 17px; margin: 0; color: var(--olive); font-size: 10px; }
+.orders-section { padding: 82px 0; background: var(--paper-light); }
+.clear-data-button { min-height: 38px; padding: 0 13px; border: 1px solid #cbbcad; background: transparent; color: #76675b; font-size: 10px; cursor: pointer; }
+.activity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.activity-grid > div { min-height: 120px; padding: 20px; border: 1px solid var(--line); background: #fffdfa; }
+.activity-grid h3 { margin: 0 0 12px; color: var(--wine-deep); font: 600 20px var(--serif); }
+.activity-list { display: grid; gap: 8px; }
+.empty-activity { margin: 0; color: #968778; font-size: 11px; }
+.activity-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid #eee6dc; color: #65584e; font-size: 10px; }
+.activity-item strong { color: var(--wine-deep); }
+.activity-item span:last-child { color: var(--olive); font-weight: 700; }
+.checkout-dialog { width: min(460px, calc(100% - 32px)); padding: 0; border: 1px solid #d7c7b5; border-radius: 3px; background: #fcfaf6; color: var(--ink); box-shadow: 0 25px 80px rgba(39,25,20,.25); }
+.checkout-dialog::backdrop { background: rgba(35,22,18,.58); backdrop-filter: blur(4px); }
+.checkout-form { position: relative; display: grid; gap: 13px; padding: 30px; }
+.checkout-form h2 { margin: -4px 0 4px; font-size: 36px; }
+.dialog-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border: 1px solid var(--line); background: transparent; color: #77675b; font-size: 18px; cursor: pointer; }
+.checkout-summary { display: flex; align-items: end; justify-content: space-between; gap: 14px; padding: 14px; border: 1px solid #e4dacd; background: #f5efe5; }
+.checkout-summary > div { display: grid; gap: 3px; }
+.checkout-summary span { color: #77695e; font-size: 10px; }
+.checkout-summary strong { color: var(--wine-deep); font-size: 14px; }
+.checkout-summary label { width: 92px; }
+.checkout-summary input { text-align: center; }
+.checkout-note { margin: 2px 0; }
+.checkout-submit { width: 100%; justify-content: space-between; cursor: pointer; }
+
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr 1fr; }
   .hero-art { min-height: 410px; }
@@ -302,6 +351,16 @@ h2 { color: var(--wine-dark); font: 600 clamp(32px,4.6vw,48px)/1.15 var(--serif)
   .login-panel { min-height: auto; padding: 39px 24px 25px; }
   .login-home { margin-bottom: 25px; }
   .login-copyright { margin-top: 25px; }
+}
+@media (max-width: 680px) {
+  .sell-section, .orders-section { padding: 58px 0; }
+  .sell-grid { grid-template-columns: 1fr; gap: 24px; }
+  .sell-fields { grid-template-columns: 1fr; }
+  .sell-form { padding: 18px; }
+  .sell-form .button { width: 100%; }
+  .activity-grid { grid-template-columns: 1fr; }
+  .checkout-form { padding: 24px 18px; }
+  .checkout-form h2 { font-size: 31px; }
 }
 @media (max-width: 390px) {
   .announcement { font-size: 9px; }

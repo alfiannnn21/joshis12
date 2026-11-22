@@ -23,9 +23,10 @@
         <span></span><span></span>
       </button>
       <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
-        <a href="#katalog">Cari makanan</a>
-        <a href="#cara-kerja">Cara kerja</a>
-        <a href="#restoran">Untuk mitra</a>
+        <a href="#top">Beranda</a>
+        <a href="#katalog">Beli</a>
+        <a href="#jual">Jual</a>
+        <a href="#pesanan">Pesanan</a>
         <a href="previews.html">5 preview</a>
         <a class="nav-login" href="login.html">Masuk <span aria-hidden="true">↗</span></a>
       </nav>
@@ -92,6 +93,7 @@
           <div class="food-body"><div class="food-kicker">TEBET · JAKARTA SELATAN</div><h3>Nasi ayam bakar</h3>
             <div class="food-bottom"><div><span>Harga contoh</span><strong>Rp 18.000</strong></div><div class="pickup"><span>Ambil sebelum</span><strong>19.30</strong></div></div>
             <p class="restaurant-name">Warung Makan Bu Nita <span>↗</span></p>
+            <button class="buy-button" type="button" data-food="Nasi ayam bakar" data-price="18000" data-stock="4">Pesan &amp; ambil</button>
           </div>
         </article>
         <article class="food-card" data-name="Kopi susu gula aren" data-restaurant="Kopi Sudut" data-category="minuman" data-city="Pancoran Jakarta Selatan">
@@ -102,6 +104,7 @@
           <div class="food-body"><div class="food-kicker">PANCORAN · JAKARTA SELATAN</div><h3>Kopi susu gula aren</h3>
             <div class="food-bottom"><div><span>Harga contoh</span><strong class="free-price">Gratis</strong></div><div class="pickup"><span>Ambil sebelum</span><strong>18.45</strong></div></div>
             <p class="restaurant-name">Kopi Sudut <span>↗</span></p>
+            <button class="buy-button" type="button" data-food="Kopi susu gula aren" data-price="0" data-stock="2">Pesan &amp; ambil</button>
           </div>
         </article>
         <article class="food-card" data-name="Paket roti sore" data-restaurant="Roti Pagi" data-category="roti & kue" data-city="Kuningan Jakarta Selatan">
@@ -112,11 +115,46 @@
           <div class="food-body"><div class="food-kicker">KUNINGAN · JAKARTA SELATAN</div><h3>Paket roti sore</h3>
             <div class="food-bottom"><div><span>Harga contoh</span><strong>Rp 12.000</strong></div><div class="pickup"><span>Ambil sebelum</span><strong>20.00</strong></div></div>
             <p class="restaurant-name">Roti Pagi <span>↗</span></p>
+            <button class="buy-button" type="button" data-food="Paket roti sore" data-price="12000" data-stock="3">Pesan &amp; ambil</button>
           </div>
         </article>
       </div>
       <p class="catalog-empty" id="catalogEmpty" hidden>Belum ada yang cocok. Coba kata kunci atau kategori lain.</p>
       <p class="demo-note"><span>i</span> Katalog ini contoh. Data menu, harga, dan waktu pengambilan bukan penawaran aktif.</p>
+    </section>
+
+    <section class="sell-section" id="jual">
+      <div class="section-wrap sell-grid">
+        <div class="sell-copy">
+          <p class="eyebrow eyebrow-dark">MODE PENJUAL <span class="eyebrow-line"></span></p>
+          <h2>Punya makanan <em>tersisa?</em></h2>
+          <p>Masukkan detail menu untuk membuat listing demo. Data disimpan hanya di browser Anda.</p>
+        </div>
+        <form class="sell-form" id="sellForm">
+          <div class="sell-fields">
+            <label>Nama makanan<input id="sellName" name="name" required placeholder="Contoh: Paket nasi sore"></label>
+            <label>Nama tempat makan<input id="sellRestaurant" name="restaurant" required placeholder="Nama warung atau kafe"></label>
+            <label>Harga (Rp)<input id="sellPrice" name="price" type="number" min="0" required value="10000"></label>
+            <label>Jumlah porsi<input id="sellStock" name="stock" type="number" min="1" max="99" required value="3"></label>
+          </div>
+          <label>Waktu ambil terakhir<input id="sellPickup" name="pickup" type="time" required value="20:00"></label>
+          <button class="button button-dark" type="submit">Publikasikan listing demo <span>↗</span></button>
+          <p class="sell-message" id="sellMessage" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="orders-section" id="pesanan">
+      <div class="section-wrap">
+        <div class="section-top">
+          <div><p class="eyebrow eyebrow-dark">AKTIVITAS SAYA <span class="eyebrow-line"></span></p><h2>Pesanan <em>dan daftar jual.</em></h2></div>
+          <button class="clear-data-button" id="clearDemoData" type="button">Hapus data demo</button>
+        </div>
+        <div class="activity-grid">
+          <div><h3>Pesanan pembelian</h3><div id="orderList" class="activity-list"><p class="empty-activity">Belum ada pesanan.</p></div></div>
+          <div><h3>Listing penjualan</h3><div id="listingList" class="activity-list"><p class="empty-activity">Belum ada listing demo.</p></div></div>
+        </div>
+      </div>
     </section>
 
     <section class="how-section" id="cara-kerja">
@@ -146,6 +184,23 @@
       </div>
     </section>
   </main>
+
+  <dialog class="checkout-dialog" id="checkoutDialog" aria-labelledby="checkoutTitle">
+    <form method="dialog" class="checkout-form" id="checkoutForm">
+      <button class="dialog-close" type="button" id="closeCheckout" aria-label="Tutup">×</button>
+      <p class="eyebrow eyebrow-dark">RESERVASI DEMO</p>
+      <h2 id="checkoutTitle">Pesan makanan</h2>
+      <div class="checkout-summary">
+        <div><span id="checkoutFood">Menu</span><strong id="checkoutPrice">Rp 0</strong></div>
+        <label>Jumlah porsi<input id="checkoutQuantity" type="number" min="1" max="99" value="1"></label>
+      </div>
+      <label>Nama penerima<input id="checkoutName" required placeholder="Nama Anda"></label>
+      <label>Catatan pengambilan<input id="checkoutNote" placeholder="Contoh: ambil jam 19.30"></label>
+      <p class="demo-note checkout-note"><span>i</span> Reservasi tersimpan di browser, bukan dikirim ke server atau MySQL.</p>
+      <button class="button button-dark checkout-submit" type="submit">Buat reservasi demo <span>→</span></button>
+      <p class="sell-message" id="checkoutMessage" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
 
   <footer class="site-footer">
     <div class="footer-main">
