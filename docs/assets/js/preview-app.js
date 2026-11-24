@@ -147,7 +147,7 @@
         '</main><nav class="mobile-nav" aria-label="Navigasi cepat">' + navButton("home", "⌂", "Beranda") + navButton("buy", "◫", "Beli") + navButton("sell", "＋", "Jual") + navButton("orders", "✓", "Pesanan") + navButton("account", "◎", "Akun") + '<button type="button" data-open-more><span class="nav-icon">⋯</span><span class="nav-label">Lainnya</span></button>' + '</nav>' +
       '</div>' +
     '</div>' +
-    '<div class="modal-backdrop" data-auth-modal><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="modal-close" type="button" data-close-auth aria-label="Tutup">×</button><p class="eyebrow">AKUN PRATINJAU</p><h2 id="auth-title">Selamat datang</h2><p>Masuk untuk melihat profil demo di perangkat ini.</p><div class="demo-notice">Mode demo saja: email tidak diverifikasi, kata sandi tidak diperiksa atau disimpan. Jangan gunakan kata sandi asli; tidak ada autentikasi server.</div><div class="auth-tabs"><button type="button" class="active" data-auth-tab="login">Masuk demo</button><button type="button" data-auth-tab="register">Daftar demo</button></div><form class="auth-form" data-auth-form><label class="form-field" data-register-field hidden>Nama lengkap<input class="field" name="name" maxlength="70" autocomplete="name" placeholder="Nama kamu"></label><label class="form-field">Email<input class="field" name="email" type="email" required autocomplete="email" placeholder="nama@email.com"></label><label class="form-field">Kata sandi<input class="field" name="password" type="password" minlength="6" required autocomplete="off" placeholder="Apa saja, minimal 6 karakter"></label><label class="form-field" data-register-field hidden>Ulangi kata sandi<input class="field" name="confirm" type="password" minlength="6" autocomplete="off" placeholder="Ketik ulang kata sandi"></label><label class="form-field" data-register-field hidden>Jenis akun<select class="select-field" name="role"><option>Pembeli</option><option>Penjual / mitra</option></select></label><button class="primary-button" type="submit">Masuk ke mode demo</button></form><p class="auth-message" aria-live="polite"></p></section></div>' +
+    '<div class="modal-backdrop" data-auth-modal><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="modal-close" type="button" data-close-auth aria-label="Tutup">×</button><p class="eyebrow">AKUN PRATINJAU</p><h2 id="auth-title">Selamat datang</h2><p>Masuk untuk melihat profil demo di perangkat ini.</p><div class="demo-notice">Pratinjau saja, bukan autentikasi sungguhan. Masuk memakai email demo tanpa kata sandi; tidak ada data akun yang dikirim ke server.</div><div class="auth-tabs"><button type="button" class="active" data-auth-tab="login">Masuk demo</button><button type="button" data-auth-tab="register">Daftar demo</button></div><form class="auth-form" data-auth-form><label class="form-field" data-register-field hidden>Nama lengkap<input class="field" name="name" maxlength="70" autocomplete="name" placeholder="Nama kamu"></label><label class="form-field">Email<input class="field" name="email" type="email" required autocomplete="email" placeholder="nama@email.com"></label><label class="form-field" data-register-field hidden>Jenis akun<select class="select-field" name="role"><option>Pembeli</option><option>Penjual / mitra</option></select></label><button class="primary-button" type="submit">Masuk ke mode demo</button></form><p class="auth-message" aria-live="polite"></p></section></div>' +
     '<div class="drawer-backdrop" data-drawer-backdrop></div><aside class="drawer" data-drawer aria-label="Panel samping"><div class="drawer-header"><h2 data-drawer-title>Keranjang</h2><button class="modal-close" type="button" data-close-drawer aria-label="Tutup">×</button></div><div class="drawer-body" data-drawer-content></div><div class="drawer-footer" data-drawer-footer></div></aside>' +
     '<div class="toast" role="status" aria-live="polite"></div>';
 
@@ -334,36 +334,30 @@
       var input = field.querySelector("input");
       if (input) input.required = mode === "register";
     });
-    document.querySelectorAll("[data-login-field]").forEach(function (field) {
-      field.hidden = mode === "register";
-      var input = field.querySelector("input");
-      if (input) input.required = mode !== "register";
-    });
-    form.querySelector('[name="password"]').autocomplete = "off";
-    var confirm = form.querySelector('[name="confirm"]');
-    if (confirm) confirm.required = mode === "register";
-    form.querySelector('button[type="submit"]').textContent = mode === "register" ? "Buat profil demo" : "Masuk ke mode demo";
+    form.querySelector('button[type="submit"]').textContent = mode === "register" ? "Buat profil demo" : "Masuk ke demo";
     document.querySelector("#auth-title").textContent = mode === "register" ? "Buat profil demo" : "Selamat datang";
+    document.querySelector(".modal-card > p:not(.eyebrow)").textContent = mode === "register"
+      ? "Buat profil lokal untuk pratinjau ini."
+      : "Masuk ke pratinjau memakai email. Kata sandi tidak diperlukan.";
     document.querySelector(".auth-message").textContent = "";
   }
   function onAuthSubmit(form) {
     var data = new FormData(form);
     var mode = form.dataset.mode;
     var email = String(data.get("email") || "").trim().toLowerCase();
-    var password = String(data.get("password") || "");
     var message = document.querySelector(".auth-message");
     function showMessage(text, kind) {
       message.textContent = text;
       message.className = "auth-message " + kind;
     }
-    if (password.length < 6) {
-      showMessage("Gunakan minimal 6 karakter untuk melanjutkan pratinjau.", "error");
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showMessage("Masukkan alamat email yang valid untuk melanjutkan.", "error");
       return;
     }
     if (mode === "register") {
       var name = String(data.get("name") || "").trim();
-      if (!name || password !== data.get("confirm")) {
-        showMessage(name ? "Kata sandi demo belum sama." : "Masukkan nama lengkap.", "error");
+      if (!name) {
+        showMessage("Masukkan nama lengkap.", "error");
         return;
       }
       var account = { name: name, email: email, role: String(data.get("role") || "Pembeli") };
@@ -391,7 +385,7 @@
       return;
     }
     renderAccountSummary();
-    showMessage("Berhasil masuk ke mode demo. Data ini tidak diverifikasi oleh server.", "success");
+    showMessage("Berhasil masuk ke mode demo. Email ini tidak diverifikasi oleh server.", "success");
     window.setTimeout(closeAuth, 1000);
   }
 
