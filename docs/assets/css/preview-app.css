@@ -14,6 +14,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body.preview-app { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 "Segoe UI", Arial, sans-serif; }
 button, input, select, textarea { font: inherit; }
@@ -171,6 +172,9 @@ a { color: inherit; }
 .drawer-body { overflow: auto; }
 .drawer-footer { margin-top: auto; padding-top: 14px; }
 .drawer-footer .primary-button { width: 100%; }
+.drawer-menu { display: grid; gap: 8px; }
+.drawer-menu button { display: flex; min-height: 46px; align-items: center; justify-content: space-between; padding: 0 13px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); color: var(--ink); text-align: left; cursor: pointer; }
+.drawer-menu button:hover { background: var(--surface-2); }
 .muted { color: var(--muted); }
 .theme-botanic { --page:#edf1e8; --surface:#fbfcf7; --surface-2:#e1e9d8; --ink:#273627; --muted:#6d786b; --line:#d0dbc8; --accent:#658253; --highlight:#c9d8ae; --radius:24px; }
 .theme-retro { --page:#f5cf68; --surface:#fff8e6; --surface-2:#f0e2b9; --ink:#30251e; --muted:#775f4d; --line:#443326; --accent:#d85737; --highlight:#f3a342; --radius:8px; --shadow:6px 6px 0 rgba(48,36,24,.13); }
@@ -223,6 +227,7 @@ a { color: inherit; }
   .mobile-nav button { display: grid; align-content: center; justify-items: center; gap: 2px; border: 0; border-radius: 12px; background: transparent; color: var(--muted); font-size: 9px; cursor: pointer; }
   .mobile-nav button.active { color: var(--accent); }
   .mobile-nav span { font-size: 17px; }
+  .mobile-nav .nav-label { font-size: 9px; }
 }
 @media (max-width: 430px) {
   .top-actions .sign-in-button { max-width: 72px; overflow: hidden; white-space: nowrap; }
@@ -234,4 +239,137 @@ a { color: inherit; }
   .form-grid { grid-template-columns: 1fr; }
   .form-field.full, .form-foot { grid-column: auto; }
   .form-foot { align-items: start; flex-direction: column; }
+}
+
+/* Each preview is a separate art direction, not just a color palette. */
+.theme-botanic .app-layout { display: block; background: radial-gradient(ellipse at 82% 8%, #d7e5c7 0, transparent 34%), var(--page); }
+.theme-botanic .app-sidebar { position: sticky; z-index: 20; top: 0; display: flex; height: auto; min-height: 82px; flex-direction: row; align-items: center; gap: 18px; padding: 13px clamp(18px, 5vw, 72px); border: 0; border-bottom: 1px solid var(--line); background: var(--surface); }
+.theme-botanic .brand { flex: 0 0 auto; margin: 0; }
+.theme-botanic .brand-mark { border-radius: 50% 50% 10px 50%; }
+.theme-botanic .nav-caption, .theme-botanic .sidebar-spacer, .theme-botanic .sidebar-note { display: none; }
+.theme-botanic .app-nav { display: flex; flex: 1; justify-content: center; gap: 5px; }
+.theme-botanic .app-nav button { width: auto; padding: 10px 11px; white-space: nowrap; }
+.theme-botanic .nav-icon { display: none; }
+.theme-botanic .sidebar-user { flex: 0 0 auto; margin: 0; padding: 0; border: 0; }
+.theme-botanic .avatar { border-radius: 50% 50% 50% 8px; }
+.theme-botanic .topbar { position: relative; top: auto; padding-right: clamp(18px, 5vw, 72px); padding-left: clamp(18px, 5vw, 72px); border: 0; background: transparent; backdrop-filter: none; }
+.theme-botanic .main-content { width: min(1420px, 100%); padding-top: 20px; }
+.theme-botanic .hero { min-height: 345px; border: 0; border-radius: 34px 120px 34px 34px; background: linear-gradient(115deg, #e0e9d7 0%, #f5f7ef 65%); }
+.theme-botanic .hero h1 { font-size: clamp(43px, 5vw, 70px); }
+.theme-botanic .hero-art img { width: 76%; border-radius: 52% 48% 48% 12px; }
+.theme-botanic .hero-tag { right: 59%; border-radius: 18px 18px 18px 4px; }
+.theme-botanic .stats-row { grid-template-columns: repeat(3, 1fr); margin: 20px 8px 0; }
+.theme-botanic .stat-card { border: 0; border-bottom: 2px solid var(--line); border-radius: 0; background: transparent; }
+.theme-botanic .product-card { border: 0; border-radius: 22px 22px 8px 22px; box-shadow: var(--shadow); }
+.theme-botanic .product-image { height: 210px; }
+.theme-botanic .mobile-nav { border-radius: 25px 25px 9px 25px; }
+
+.theme-retro .app-layout { grid-template-columns: 220px minmax(0, 1fr); background: repeating-linear-gradient(0deg, transparent 0 34px, rgba(48,37,30,.035) 35px 36px), var(--page); }
+.theme-retro .app-sidebar { border-right: 3px solid var(--ink); background: #e9b847; }
+.theme-retro .brand-mark { border: 2px solid var(--ink); background: var(--accent); color: #fff8e6; box-shadow: 3px 3px 0 var(--ink); }
+.theme-retro .brand-name, .theme-retro .sidebar-note strong { font-family: "Segoe UI", Arial, sans-serif; font-weight: 900; text-transform: uppercase; }
+.theme-retro .app-nav button { border: 2px solid transparent; border-radius: 5px; color: var(--ink); font-weight: 700; }
+.theme-retro .app-nav button:hover, .theme-retro .app-nav button.active { border-color: var(--ink); background: var(--surface); box-shadow: 3px 3px 0 var(--ink); }
+.theme-retro .nav-icon { color: var(--accent); }
+.theme-retro .sidebar-note { border: 2px solid var(--ink); border-radius: 5px; background: #f3a342; box-shadow: 4px 4px 0 var(--ink); }
+.theme-retro .topbar { border-bottom: 3px solid var(--ink); background: var(--page); }
+.theme-retro .hero { min-height: 380px; border: 3px solid var(--ink); border-radius: 5px; background: #f2b94d; box-shadow: 9px 9px 0 var(--ink); }
+.theme-retro .hero h1 { max-width: 570px; font-family: "Segoe UI", Arial, sans-serif; font-size: clamp(47px, 6vw, 78px); font-weight: 950; line-height: .9; letter-spacing: -.075em; text-transform: uppercase; }
+.theme-retro .hero-copy > p:not(.eyebrow) { max-width: 365px; color: #453327; font-weight: 600; }
+.theme-retro .hero-art img { top: 4%; right: 3%; width: 72%; height: 92%; border: 4px solid var(--ink); border-radius: 3px; box-shadow: 8px 8px 0 var(--accent); transform: rotate(3deg); }
+.theme-retro .hero-tag { right: 55%; bottom: 0; border: 2px solid var(--ink); border-radius: 3px; box-shadow: 4px 4px 0 var(--ink); }
+.theme-retro .section-head h2, .theme-retro .panel-heading h2, .theme-retro .page-heading h1 { font-family: "Segoe UI", Arial, sans-serif; font-weight: 900; text-transform: uppercase; }
+.theme-retro .stat-card, .theme-retro .product-card, .theme-retro .panel, .theme-retro .category-card { border: 2px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--ink); }
+.theme-retro .stat-icon, .theme-retro .category-icon { border: 1px solid var(--ink); border-radius: 4px; }
+.theme-retro .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.theme-retro .product-image { height: 240px; border-bottom: 2px solid var(--ink); }
+.theme-retro .product-card:nth-child(even) { transform: translateY(14px); }
+.theme-retro .primary-button { border: 2px solid var(--ink); border-radius: 4px; background: var(--accent); box-shadow: 3px 3px 0 var(--ink); font-weight: 800; }
+
+.theme-mono .app-layout { grid-template-columns: 82px minmax(0, 1fr); }
+.theme-mono .app-sidebar { align-items: center; padding: 21px 10px; border-right: 2px solid var(--ink); background: #dce6e2; }
+.theme-mono .brand { margin: 0 0 28px; }
+.theme-mono .brand-mark { width: 46px; height: 46px; border: 1px solid var(--ink); border-radius: 2px; background: var(--ink); color: var(--surface); font-family: "Courier New", monospace; }
+.theme-mono .brand-name, .theme-mono .nav-caption, .theme-mono .sidebar-note, .theme-mono .sidebar-user, .theme-mono .nav-label, .theme-mono .nav-count { display: none; }
+.theme-mono .app-nav { width: 100%; gap: 7px; }
+.theme-mono .app-nav button { min-height: 48px; justify-content: center; padding: 8px 0; border: 1px solid transparent; border-radius: 2px; }
+.theme-mono .app-nav button:hover, .theme-mono .app-nav button.active { border-color: var(--ink); background: var(--surface); }
+.theme-mono .nav-icon { width: auto; color: var(--ink); font: 18px "Courier New", monospace; }
+.theme-mono .topbar { min-height: 65px; border-bottom: 2px solid var(--ink); background: var(--surface); }
+.theme-mono .main-content { width: min(1220px, 100%); padding-top: 26px; }
+.theme-mono .hero { min-height: 300px; border: 1px solid var(--ink); border-radius: 0; background: var(--surface); }
+.theme-mono .hero h1 { font: 700 clamp(38px, 5vw, 62px)/1.02 "Courier New", monospace; letter-spacing: -.075em; }
+.theme-mono .hero-art img { width: 82%; border: 1px solid var(--ink); border-radius: 0; filter: grayscale(1); }
+.theme-mono .hero-tag { right: 62%; border: 1px solid var(--ink); border-radius: 0; box-shadow: 5px 5px 0 var(--highlight); font-family: "Courier New", monospace; }
+.theme-mono .stats-row { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.theme-mono .stat-card { border: 0; border-right: 1px solid var(--line); border-radius: 0; background: transparent; }
+.theme-mono .stat-icon { border-radius: 0; background: transparent; font-family: "Courier New", monospace; }
+.theme-mono .product-grid { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--ink); }
+.theme-mono .product-card { display: grid; grid-template-columns: 190px minmax(0, 1fr); border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; background: transparent; }
+.theme-mono .product-image { height: 145px; margin: 11px 0; border: 1px solid var(--ink); }
+.theme-mono .product-image img { filter: grayscale(1); }
+.theme-mono .product-body { display: flex; flex-direction: column; justify-content: center; padding: 18px 24px; }
+.theme-mono .product-body h3, .theme-mono .product-price { font-family: "Courier New", monospace; }
+.theme-mono .product-footer { margin-top: auto; }
+.theme-mono .category-card { border-radius: 0; }
+
+.theme-wine .app-layout { grid-template-columns: 275px minmax(0, 1fr); background: radial-gradient(ellipse at 80% 6%, #533741 0, transparent 32%), var(--page); }
+.theme-wine .app-sidebar { border-right: 1px solid #76515a; background: linear-gradient(180deg, #3c2930, #281c21 76%); }
+.theme-wine .brand-mark { border: 1px solid #d6a187; border-radius: 50%; background: transparent; color: #d6a187; }
+.theme-wine .brand-name, .theme-wine .sidebar-note strong { font-family: Georgia, serif; letter-spacing: .01em; }
+.theme-wine .app-nav button { border-radius: 99px; }
+.theme-wine .app-nav button:hover, .theme-wine .app-nav button.active { background: #5a3c45; color: #fff2e9; }
+.theme-wine .sidebar-note { border-color: #76515a; background: #3c2930; }
+.theme-wine .sidebar-user { border-color: #76515a; }
+.theme-wine .topbar { background: rgba(36,25,29,.82); }
+.theme-wine .hero { display: block; min-height: 460px; padding: clamp(32px, 6vw, 70px); border: 1px solid #76515a; background: #291c21; }
+.theme-wine .hero-copy { max-width: 620px; padding-top: 25px; }
+.theme-wine .hero h1 { max-width: 570px; font-size: clamp(49px, 7vw, 86px); }
+.theme-wine .hero-copy > p:not(.eyebrow) { max-width: 400px; color: #e0cfc6; }
+.theme-wine .hero-art { position: absolute; inset: 0; }
+.theme-wine .hero-art:after { position: absolute; inset: 0; background: linear-gradient(90deg, #291c21 8%, rgba(41,28,33,.88) 43%, rgba(41,28,33,.14)); content: ""; }
+.theme-wine .hero-art img { top: 0; right: 0; width: 60%; height: 100%; border-radius: 0; opacity: .8; }
+.theme-wine .hero-tag { z-index: 2; right: 7%; bottom: 20px; border-color: #76515a; border-radius: 2px; background: #3c2930; }
+.theme-wine .stats-row { grid-template-columns: 1fr 1fr 1fr; }
+.theme-wine .stat-card { border-color: #76515a; border-radius: 2px; background: #302127; }
+.theme-wine .stat-icon { border-radius: 2px; background: #4a3038; }
+.theme-wine .product-card { border-radius: 2px; background: #302127; }
+.theme-wine .product-image { height: 205px; }
+.theme-wine .product-body h3 { font-family: Georgia, serif; font-weight: 500; }
+.theme-wine .primary-button { border-radius: 2px; }
+
+@media (max-width: 1050px) {
+  .theme-botanic .app-sidebar { gap: 10px; padding-right: 15px; padding-left: 15px; }
+  .theme-botanic .app-nav { gap: 0; }
+  .theme-botanic .app-nav button { padding-right: 7px; padding-left: 7px; font-size: 11px; }
+  .theme-botanic .sidebar-user { display: none; }
+  .theme-mono .app-layout { grid-template-columns: 70px minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .mobile-nav { grid-template-columns: repeat(6, 1fr); }
+  .mobile-nav .nav-icon { display: block; width: auto; }
+  .mobile-nav .nav-label { display: block; }
+  .theme-botanic .app-sidebar { display: none; }
+  .theme-retro .app-layout { display: block; }
+  .theme-retro .app-sidebar { display: none; }
+  .theme-retro .hero { min-height: 390px; padding: 23px; }
+  .theme-retro .hero-art img { top: auto; right: 4%; bottom: 4%; width: 48%; height: 46%; }
+  .theme-retro .hero-tag { right: 45%; bottom: 4%; }
+  .theme-retro .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .theme-retro .product-card:nth-child(even) { transform: none; }
+  .theme-mono .app-layout { display: block; }
+  .theme-mono .app-sidebar { display: none; }
+  .theme-mono .product-card { grid-template-columns: 110px minmax(0, 1fr); }
+  .theme-mono .product-image { height: 110px; }
+  .theme-mono .product-body { padding: 10px; }
+  .theme-wine .hero { min-height: 410px; }
+}
+@media (max-width: 430px) {
+  .theme-botanic .hero { border-radius: 24px 70px 20px 20px; }
+  .theme-botanic .hero-art { min-height: 170px; }
+  .theme-retro .product-image { height: 135px; }
+  .theme-retro .hero h1 { font-size: 48px; }
+  .theme-wine .hero { min-height: 390px; padding: 25px; }
+  .theme-wine .hero-art img { width: 83%; opacity: .5; }
+  .theme-wine .hero-art:after { background: linear-gradient(90deg, rgba(41,28,33,.85), rgba(41,28,33,.34)); }
 }

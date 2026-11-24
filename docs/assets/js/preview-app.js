@@ -93,6 +93,7 @@
           navButton("orders", "✓", "Pesanan", '<span class="nav-count" data-order-count>0</span>') +
           navButton("favorites", "♡", "Favorit") + navButton("partners", "✳", "Mitra") +
           navButton("help", "?", "Bantuan") + navButton("account", "◎", "Akun") +
+          '<button type="button" data-open-auth aria-label="Masuk atau daftar"><span class="nav-icon">↗</span><span class="nav-label">Masuk / Daftar</span></button>' +
         '</nav><div class="sidebar-spacer"></div>' +
         '<div class="sidebar-note"><strong>Lebih baik bersama.</strong><p>Temukan makanan, kurangi sisa, dukung usaha sekitar.</p></div>' +
         '<div class="sidebar-user" data-account-summary></div>' +
@@ -101,7 +102,7 @@
         '<header class="topbar"><label class="top-search"><span>⌕</span><input type="search" data-global-search placeholder="Cari menu atau mitra" aria-label="Cari menu atau mitra"></label>' +
           '<div class="top-actions"><button class="icon-button" type="button" data-open-cart aria-label="Buka keranjang">▱<span class="badge" data-cart-count>0</span></button>' +
           '<button class="icon-button" type="button" data-open-notifications aria-label="Notifikasi">◔</button>' +
-          '<button class="sign-in-button" type="button" data-open-auth>Masuk</button></div></header>' +
+          '<button class="sign-in-button" type="button" data-open-auth>Masuk / Daftar</button></div></header>' +
         '<main class="main-content">' +
           '<section class="view active" data-view="home">' +
             '<div class="hero"><div class="hero-copy"><p class="eyebrow">JOSHIS12 · FOOD WITH PURPOSE</p><h1>Menu baik,<br>pilihan bijak.</h1><p>Jelajahi makanan dari mitra sekitar, pesan sesuai kebutuhan, dan bantu kurangi makanan terbuang.</p><div class="hero-actions"><button class="primary-button" type="button" data-view-target="buy">Jelajahi menu <span>→</span></button><button class="secondary-button" type="button" data-view-target="sell">Mulai berjualan</button></div></div>' +
@@ -143,15 +144,15 @@
             '<div class="seller-layout"><section class="panel"><div class="panel-heading"><div><h2>Profil</h2><p data-profile-status>Belum masuk ke mode demo.</p></div></div><div class="order-summary" data-profile-card></div></section>' +
               '<section class="panel"><div class="panel-heading"><div><h2>Preferensi</h2><p>Pengaturan sederhana untuk pratinjau.</p></div></div><form class="form-grid" data-settings-form><label class="form-field full">Area pilihan<select class="select-field" name="area"><option>Jakarta Selatan</option><option>Jakarta Pusat</option><option>Jakarta Barat</option><option>Jakarta Timur</option><option>Jakarta Utara</option></select></label><label class="form-field full">Email informasi<input class="field" name="email" type="email" placeholder="nama@email.com"></label><div class="form-foot"><small>Preferensi disimpan lokal.</small><button class="secondary-button" type="submit">Simpan preferensi</button></div></form></section></div></section>' +
           '<footer class="site-footer"><span>© Joshis12 · Pratinjau frontend</span><span>Belum ada koneksi backend atau MySQL · <a href="../previews.html">Lima tema desain</a></span></footer>' +
-        '</main><nav class="mobile-nav" aria-label="Navigasi cepat">' + navButton("home", "⌂", "Beranda") + navButton("buy", "◫", "Beli") + navButton("sell", "＋", "Jual") + navButton("orders", "✓", "Pesanan") + navButton("account", "◎", "Akun") + '</nav>' +
+        '</main><nav class="mobile-nav" aria-label="Navigasi cepat">' + navButton("home", "⌂", "Beranda") + navButton("buy", "◫", "Beli") + navButton("sell", "＋", "Jual") + navButton("orders", "✓", "Pesanan") + navButton("account", "◎", "Akun") + '<button type="button" data-open-more><span class="nav-icon">⋯</span><span class="nav-label">Lainnya</span></button>' + '</nav>' +
       '</div>' +
     '</div>' +
-    '<div class="modal-backdrop" data-auth-modal><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="modal-close" type="button" data-close-auth aria-label="Tutup">×</button><p class="eyebrow">AKUN PRATINJAU</p><h2 id="auth-title">Selamat datang</h2><p>Masuk untuk melihat profil demo di perangkat ini.</p><div class="demo-notice">Ini bukan autentikasi sungguhan. Akun hanya menyimpan nama dan email lokal; kata sandi tidak disimpan. Jangan masukkan kata sandi asli.</div><div class="auth-tabs"><button type="button" class="active" data-auth-tab="login">Masuk demo</button><button type="button" data-auth-tab="register">Daftar demo</button></div><form class="auth-form" data-auth-form><label class="form-field" data-register-field hidden>Nama lengkap<input class="field" name="name" maxlength="70" autocomplete="name" placeholder="Nama kamu"></label><label class="form-field">Email<input class="field" name="email" type="email" required autocomplete="email" placeholder="nama@email.com"></label><label class="form-field">Kata sandi<input class="field" name="password" type="password" minlength="6" required autocomplete="off" placeholder="Minimal 6 karakter"></label><label class="form-field" data-register-field hidden>Ulangi kata sandi<input class="field" name="confirm" type="password" minlength="6" autocomplete="off" placeholder="Ketik ulang kata sandi"></label><label class="form-field" data-register-field hidden>Jenis akun<select class="select-field" name="role"><option>Pembeli</option><option>Penjual / mitra</option></select></label><button class="primary-button" type="submit">Masuk ke mode demo</button></form><p class="auth-message" aria-live="polite"></p></section></div>' +
+    '<div class="modal-backdrop" data-auth-modal><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="modal-close" type="button" data-close-auth aria-label="Tutup">×</button><p class="eyebrow">AKUN PRATINJAU</p><h2 id="auth-title">Selamat datang</h2><p>Masuk untuk melihat profil demo di perangkat ini.</p><div class="demo-notice">Mode demo saja: email tidak diverifikasi, kata sandi tidak diperiksa atau disimpan. Jangan gunakan kata sandi asli; tidak ada autentikasi server.</div><div class="auth-tabs"><button type="button" class="active" data-auth-tab="login">Masuk demo</button><button type="button" data-auth-tab="register">Daftar demo</button></div><form class="auth-form" data-auth-form><label class="form-field" data-register-field hidden>Nama lengkap<input class="field" name="name" maxlength="70" autocomplete="name" placeholder="Nama kamu"></label><label class="form-field">Email<input class="field" name="email" type="email" required autocomplete="email" placeholder="nama@email.com"></label><label class="form-field">Kata sandi<input class="field" name="password" type="password" minlength="6" required autocomplete="off" placeholder="Apa saja, minimal 6 karakter"></label><label class="form-field" data-register-field hidden>Ulangi kata sandi<input class="field" name="confirm" type="password" minlength="6" autocomplete="off" placeholder="Ketik ulang kata sandi"></label><label class="form-field" data-register-field hidden>Jenis akun<select class="select-field" name="role"><option>Pembeli</option><option>Penjual / mitra</option></select></label><button class="primary-button" type="submit">Masuk ke mode demo</button></form><p class="auth-message" aria-live="polite"></p></section></div>' +
     '<div class="drawer-backdrop" data-drawer-backdrop></div><aside class="drawer" data-drawer aria-label="Panel samping"><div class="drawer-header"><h2 data-drawer-title>Keranjang</h2><button class="modal-close" type="button" data-close-drawer aria-label="Tutup">×</button></div><div class="drawer-body" data-drawer-content></div><div class="drawer-footer" data-drawer-footer></div></aside>' +
     '<div class="toast" role="status" aria-live="polite"></div>';
 
   function navButton(view, icon, label, extra) {
-    return '<button type="button" data-view-target="' + view + '" aria-label="' + label + '"><span class="nav-icon">' + icon + '</span>' + label + (extra || "") + '</button>';
+    return '<button type="button" data-view-target="' + view + '" aria-label="' + label + '"><span class="nav-icon">' + icon + '</span><span class="nav-label">' + label + '</span>' + (extra || "") + '</button>';
   }
 
   function currentView() {
@@ -270,7 +271,7 @@
     holder.innerHTML = account
       ? '<span class="avatar">' + escapeHtml(account.name.charAt(0).toUpperCase()) + '</span><span><strong>' + escapeHtml(account.name) + '</strong><small>' + escapeHtml(account.role) + ' · mode demo</small></span>'
       : '<span class="avatar">J</span><span><strong>Tamu Joshis12</strong><small>Belum masuk · mode demo</small></span>';
-    document.querySelector(".sign-in-button").textContent = account ? "Akun" : "Masuk";
+    document.querySelector(".sign-in-button").textContent = account ? "Profil" : "Masuk / Daftar";
     renderProfile();
   }
   function renderProfile() {
@@ -333,6 +334,11 @@
       var input = field.querySelector("input");
       if (input) input.required = mode === "register";
     });
+    document.querySelectorAll("[data-login-field]").forEach(function (field) {
+      field.hidden = mode === "register";
+      var input = field.querySelector("input");
+      if (input) input.required = mode !== "register";
+    });
     form.querySelector('[name="password"]').autocomplete = "off";
     var confirm = form.querySelector('[name="confirm"]');
     if (confirm) confirm.required = mode === "register";
@@ -376,18 +382,16 @@
       return;
     }
     var saved = readJson(ACCOUNT_KEY, null);
-    if (!saved || saved.email !== email) {
-      showMessage("Email belum memiliki profil demo lokal. Silakan daftar terlebih dahulu.", "error");
-      return;
-    }
-    var session = { name: saved.name, email: saved.email, role: saved.role };
+    var session = saved && saved.email === email
+      ? { name: saved.name, email: saved.email, role: saved.role }
+      : { name: email.split("@")[0].replace(/[._-]+/g, " "), email: email, role: "Pembeli" };
     try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); }
     catch (error) {
       showMessage("Sesi demo tidak dapat disimpan di browser ini.", "error");
       return;
     }
     renderAccountSummary();
-    showMessage("Mode demo aktif untuk sesi browser ini. Kata sandi tidak diverifikasi.", "success");
+    showMessage("Berhasil masuk ke mode demo. Data ini tidak diverifikasi oleh server.", "success");
     window.setTimeout(closeAuth, 1000);
   }
 
@@ -409,7 +413,7 @@
 
   document.addEventListener("click", function (event) {
     var viewTarget = event.target.closest("[data-view-target]");
-    if (viewTarget) { switchView(viewTarget.dataset.viewTarget); return; }
+    if (viewTarget) { closeDrawer(); switchView(viewTarget.dataset.viewTarget); return; }
     var categoryTarget = event.target.closest("[data-category-target]");
     if (categoryTarget) {
       switchView("buy");
@@ -440,6 +444,17 @@
     if (event.target.closest("[data-open-auth]")) {
       if (readSession()) switchView("account");
       else openAuth("login");
+      return;
+    }
+    if (event.target.closest("[data-open-more]")) {
+      openDrawer("Menu Joshis12",
+        '<div class="drawer-menu">' +
+          '<button type="button" data-view-target="favorites">Favorit <span>♡</span></button>' +
+          '<button type="button" data-view-target="partners">Mitra <span>✳</span></button>' +
+          '<button type="button" data-view-target="help">Bantuan <span>?</span></button>' +
+          '<button type="button" data-view-target="account">Akun & pengaturan <span>◎</span></button>' +
+          '<button type="button" data-open-auth>Masuk / Daftar <span>↗</span></button>' +
+        '</div>');
       return;
     }
     if (event.target.closest("[data-open-cart]")) {
